@@ -56,7 +56,6 @@ export default function Profile() {
           full_name: fullName,
           email: user.email!,
           avatar_url: avatarUrl,
-          updated_at: new Date().toISOString(),
         });
 
       if (error) throw error;
