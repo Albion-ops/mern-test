@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { User } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
-import { LogOut, Plus, Trash2, CheckCircle2, Circle, Clock } from 'lucide-react';
+import { LogOut, Plus, Trash2, CheckCircle2, Circle, Clock, User as UserIcon } from 'lucide-react';
 
 type Task = {
   id: string;
@@ -29,6 +31,7 @@ export default function Dashboard() {
   const [description, setDescription] = useState('');
   const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium');
   const { user, signOut } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchTasks();
@@ -124,10 +127,16 @@ export default function Dashboard() {
           <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
             TaskFlow
           </h1>
-          <Button variant="outline" onClick={signOut} data-testid="signout-button">
-            <LogOut className="mr-2 h-4 w-4" />
-            Sign Out
-          </Button>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={() => navigate('/profile')}>
+              <UserIcon className="mr-2 h-4 w-4" />
+              Profile
+            </Button>
+            <Button variant="outline" onClick={signOut} data-testid="signout-button">
+              <LogOut className="mr-2 h-4 w-4" />
+              Sign Out
+            </Button>
+          </div>
         </div>
       </header>
 
