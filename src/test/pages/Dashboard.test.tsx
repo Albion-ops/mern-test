@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Dashboard from '@/pages/Dashboard';
@@ -60,10 +60,8 @@ describe('Dashboard Page', () => {
     vi.clearAllMocks();
   });
 
-  it('renders dashboard', async () => {
+  it('renders dashboard', () => {
     const { getByText } = renderDashboard();
-    await waitFor(() => {
-      expect(getByText('TaskFlow')).toBeInTheDocument();
-    });
+    expect(getByText('TaskFlow')).toBeInTheDocument();
   });
 });
