@@ -40,51 +40,33 @@ cypress/
 
 ```bash
 # Run all tests
-npm run test:unit
+npx vitest run
 
 # Run tests in watch mode
-npm run test:watch
+npx vitest
 
 # Run tests with UI
-npm run test:ui
+npx vitest --ui
 
 # Generate coverage report
-npm run test:coverage
+npx vitest run --coverage
 ```
 
 ### End-to-End Tests
 
 ```bash
 # Open Cypress interactive mode
-npm run test:e2e
+npx cypress open
 
 # Run Cypress in headless mode
-npm run test:e2e:headless
+npx cypress run
 ```
 
 ### Run All Tests
 
 ```bash
-# Run all test suites
-npm test
-```
-
-## Test Scripts
-
-Add these to your `package.json`:
-
-```json
-{
-  "scripts": {
-    "test": "npm run test:unit && npm run test:e2e:headless",
-    "test:unit": "vitest run",
-    "test:watch": "vitest",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage",
-    "test:e2e": "cypress open",
-    "test:e2e:headless": "cypress run"
-  }
-}
+# Run unit tests then E2E tests
+npx vitest run && npx cypress run
 ```
 
 ## Writing Tests
